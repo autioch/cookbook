@@ -1,0 +1,31 @@
+---
+import { CATEGORIES, CATEGORY_IDS } from '../recipes/labels';
+import { allRecipes } from '../recipes/recipes';
+import { SITE_NAME } from '../shared/consts';
+import PageLayout from '../shared/PageLayout/PageLayout.astro';
+
+const recipes = await allRecipes();
+const categories = CATEGORY_IDS.filter((c) => recipes.some((r) => r.data.categories.includes(c)));
+---
+
+<PageLayout description="Nasz domowy zeszyt z przepisami: obiady, zupy, śniadania, desery i przekąski dla gości.">
+  <main id="main" class="flow text-page">
+    <h1>{SITE_NAME}</h1>
+    <p class="lede">
+      Nasz domowy zeszyt z przepisami: co gotowaliśmy, co chcemy ugotować i jak nam wyszło.
+    </p>
+    <p>
+      <a class="call" href="/przepisy/">
+        Co mogę zrobić z tego, co mam?
+      </a>
+    </p>
+    <h2>Według posiłku</h2>
+    <ul class="tiles" role="list">
+      {categories.map((id) => (
+        <li>
+          <a href={`/przepisy/?posilek=${id}`}>{CATEGORIES[id]}</a>
+        </li>
+      ))}
+    </ul>
+  </main>
+</PageLayout>

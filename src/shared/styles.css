@@ -1,0 +1,237 @@
+/* Every colour and size the site uses (styling.md § Palette): warm paper, dark ink, a fountain-pen
+   blue accent and a notebook's red margin; normal sizes that all scale, AAA contrast for every text. */
+:root {
+  color-scheme: light;
+
+  /* Warm paper. */
+  --bg: #fbf8f3;
+  --surface: #ffffff;
+  /* Body text: 16.4:1 on --bg (AAA). */
+  --ink: #1c1a17;
+  /* Secondary text: 9.0:1 on --bg (AAA) — older eyes, no faint grey. */
+  --muted: #4a453d;
+  /* Rules only, decorative — never a control's edge. */
+  --line: #cfc7b8;
+  /* Fountain-pen blue: links and focus, 10.3:1 on --bg; white on it 11:1. */
+  --accent: #1f3b70;
+  --on-accent: #ffffff;
+  /* A quiet fill: a chosen filter, a fold's summary under the pointer. Ink 14.1:1 on it. */
+  --chip: #efe7d6;
+  /* A notebook's red margin line: decoration only, never text or a control's edge. */
+  --margin: #d0574a;
+  /* A draft's mark: a pale yellow note. Ink 15:1 on it. */
+  --note: #fbf0c4;
+
+  /* Atkinson Hyperlegible Next (src/shared/fonts.css), then the system's own until it loads. */
+  --font: 'Atkinson Hyperlegible Next', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  /* The browser's own size (owner): every size in rem, so text size and zoom scale them. */
+  --fs-body: 1rem;
+  --fs-small: 0.9375rem;
+  --fs-lede: clamp(1.125rem, 1rem + 0.5vi, 1.3125rem);
+  --fs-h1: clamp(2rem, 1.6rem + 2vi, 3rem);
+  --fs-h2: clamp(1.375rem, 1.2rem + 0.8vi, 1.75rem);
+  --fs-h3: 1.1875rem;
+  --fw-heading: 700;
+  --fw-strong: 650;
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+
+  --radius: 6px;
+  --border: 1px solid var(--line);
+  --measure: 40rem;
+  --container: 72rem;
+  --gutter: clamp(1rem, 4vi, 2rem);
+  /* Pointer targets (styling.md § Ground rules). */
+  --target: 44px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+[hidden] {
+  /* eslint-disable-next-line css/no-important -- `hidden` must beat every component's display, whatever its specificity. */
+  display: none !important;
+}
+
+body,
+h1,
+h2,
+h3,
+p,
+ol,
+ul,
+dl,
+dd,
+figure {
+  margin: 0;
+}
+
+ol[role='list'],
+ul[role='list'] {
+  list-style: none;
+  padding: 0;
+}
+
+html {
+  font-family: var(--font);
+  font-size: var(--fs-body);
+  line-height: 1.6;
+  color: var(--ink);
+  background: var(--bg);
+  scrollbar-gutter: stable;
+}
+
+body {
+  min-block-size: 100dvb;
+}
+
+strong,
+b {
+  font-weight: var(--fw-strong);
+}
+
+h1,
+h2,
+h3 {
+  font-weight: var(--fw-heading);
+  line-height: 1.2;
+  text-wrap: balance;
+  overflow-wrap: break-word;
+}
+
+h1 {
+  font-size: var(--fs-h1);
+}
+
+h2 {
+  font-size: var(--fs-h2);
+}
+
+h3 {
+  font-size: var(--fs-h3);
+}
+
+a {
+  color: var(--accent);
+  text-underline-offset: 0.15em;
+}
+
+:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* Compositions. */
+
+/* The page: one column, centred, a gutter at the sides. */
+.page {
+  max-inline-size: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+/* The page's content: room under the header. */
+main {
+  padding-block-start: var(--space-6);
+}
+
+/* Vertical rhythm between siblings. */
+.flow > * + * {
+  margin-block-start: var(--space-4);
+}
+
+/* A page of prose (O stronie, Prywatność): one readable column, room above each section. */
+.text-page {
+  max-inline-size: var(--measure);
+  padding-block-end: var(--space-7);
+
+  & h2 {
+    margin-block-start: var(--space-6);
+  }
+}
+
+/* Utilities. */
+
+/* The one call on a page: a filled button, a 44 px target. */
+.call {
+  display: inline-flex;
+  align-items: center;
+  min-block-size: var(--target);
+  padding-inline: var(--space-5);
+  font-weight: var(--fw-strong);
+  color: var(--on-accent);
+  background: var(--accent);
+  border-radius: var(--radius);
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.lede {
+  max-inline-size: var(--measure);
+  color: var(--muted);
+  font-size: var(--fs-lede);
+}
+
+/* A list of pages as tiles with a border, underlined on hover and focus (styling.md § Ground rules). */
+.tiles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+
+  & a {
+    display: inline-flex;
+    align-items: center;
+    min-block-size: var(--target);
+    padding-inline: var(--space-4);
+    color: var(--ink);
+    font-weight: var(--fw-strong);
+    background: var(--surface);
+    border: 1px solid var(--muted);
+    border-radius: var(--radius);
+    text-decoration: none;
+
+    &:hover,
+    &:focus-visible {
+      text-decoration: underline;
+    }
+  }
+}
+
+/* A draft's mark, in words on a pale note. */
+.draft {
+  display: inline-block;
+  margin-inline-start: var(--space-2);
+  padding-inline: var(--space-2);
+  color: var(--ink);
+  background: var(--note);
+  border: 1px solid var(--muted);
+  border-radius: var(--radius);
+  font-size: var(--fs-small);
+  font-weight: var(--fw-strong);
+}
+
+/* Printed: black on white, no site chrome (styling.md § Print). */
+@media print {
+  :root {
+    --bg: #ffffff;
+    --ink: #000000;
+    --muted: #000000;
+    --accent: #000000;
+  }
+
+  body :is(.skip-link, .site-header, .site-footer) {
+    display: none;
+  }
+}

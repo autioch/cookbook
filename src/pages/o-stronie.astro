@@ -1,0 +1,17 @@
+---
+import PageLayout from '../shared/PageLayout/PageLayout.astro';
+import { page } from '../shared/pages';
+---
+
+<PageLayout title="O stronie" description={page('/o-stronie/').about}>
+  <main id="main" class="flow text-page">
+    <h1>O stronie</h1>
+    <p class="lede">
+      To nasz rodzinny zeszyt z przepisami, przepisany na stronę, żeby łatwiej było coś wybrać.
+    </p>
+    <p>
+      Przepis oznaczony „Do sprawdzenia” spisaliśmy z internetu: źródła są pod przepisem. Kiedy go
+      ugotujemy, poprawiamy ilości i kroki po swojemu i dopisujemy uwagi.
+    </p>
+  </main>
+</PageLayout>

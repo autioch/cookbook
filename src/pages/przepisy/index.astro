@@ -1,0 +1,27 @@
+---
+// Every recipe A–Z; on top „Co mam w domu?”: pick a meal, tick what's at home.
+import Finder from '../../recipes/Finder/Finder.astro';
+import { CATEGORY_IDS } from '../../recipes/labels';
+import { PANTRY } from '../../recipes/Finder/match';
+import RecipeList from '../../recipes/RecipeList.astro';
+import { allRecipes, productsOf } from '../../recipes/recipes';
+import PageLayout from '../../shared/PageLayout/PageLayout.astro';
+import { page } from '../../shared/pages';
+
+const about = page('/przepisy/').about;
+const recipes = await allRecipes();
+const collator = new Intl.Collator('pl');
+const products = [...new Set(recipes.flatMap(productsOf))]
+  .filter((p) => !PANTRY.includes(p))
+  .sort(collator.compare);
+const categories = CATEGORY_IDS.filter((c) => recipes.some((r) => r.data.categories.includes(c)));
+---
+
+<PageLayout title="Przepisy" description={about}>
+  <main id="main" class="flow">
+    <h1>Przepisy</h1>
+    <p class="lede">{about}</p>
+    <Finder products={products} categories={categories} />
+    <RecipeList recipes={recipes} />
+  </main>
+</PageLayout>

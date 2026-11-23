@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+  <!-- The mark full-bleed, scaled to 76 %: iOS rounds the corners itself, so nothing sits near
+       the edge. Source of public/apple-touch-icon.png — never published. -->
+  <rect width="256" height="256" fill="#1f3b70"/>
+  <g transform="translate(128 128) scale(0.76) translate(-128 -128)">
+  <rect x="60" y="40" width="136" height="176" rx="8" fill="#fff"/>
+  <path d="M92 40v176" stroke="#d0574a" stroke-width="8"/>
+  <path d="M108 92h64M108 128h64M108 164h44" stroke="#1f3b70" stroke-width="10"/>
+  </g>
+</svg>

@@ -1,0 +1,42 @@
+---
+import { SITE_NAME } from '../consts';
+import { PAGES } from '../pages';
+import './SiteHeader.css';
+// The mark is a notebook page (public/favicon.svg draws the same).
+
+const here = Astro.url.pathname;
+const main = PAGES.filter((p) => p.menu === 'main');
+// The page itself, or a page inside its section (a recipe under /przepisy/).
+function current(path: string): 'page' | 'true' | undefined {
+  if (here === path) {
+    return 'page';
+  }
+  return here.startsWith(path) ? 'true' : undefined;
+}
+---
+
+<a class="skip-link" href="#main">
+  Przejdź do treści
+</a>
+<header class="site-header">
+  <a class="site-header__home" href="/" aria-current={here === '/' ? 'page' : undefined}>
+    <svg class="site-header__mark" viewBox="0 0 256 256" aria-hidden="true">
+      <rect width="256" height="256" rx="20" fill="var(--accent)"></rect>
+      <rect x="60" y="40" width="136" height="176" rx="8" fill="var(--on-accent)"></rect>
+      <path d="M92 40v176" stroke="var(--margin)" stroke-width="8"></path>
+      <path d="M108 92h64M108 128h64M108 164h44" stroke="var(--accent)" stroke-width="10"></path>
+    </svg>
+    <span>{SITE_NAME}</span>
+  </a>
+  <nav class="site-nav" aria-label="Menu">
+    <ul role="list">
+      {main.map(({ path, title }) => (
+        <li>
+          <a href={path} aria-current={current(path)}>
+            {title}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+</header>

@@ -1,0 +1,188 @@
+/* A recipe page (docs/vision.md § The recipe page): one readable column; on a wide screen the
+   steps in the main column and the ingredients beside them, kept in view while scrolling; on
+   paper, the recipe alone. */
+.recipe {
+  max-inline-size: var(--measure);
+  padding-block-end: var(--space-7);
+
+  & h3 {
+    margin-block-start: var(--space-4);
+  }
+}
+
+/* The page's parts in reading order: title, facts and ingredients, steps, notes, sources. */
+.recipe__layout > * + * {
+  margin-block-start: var(--space-6);
+}
+
+/* Wide: the title and the steps in the main column; the facts and the ingredients beside them
+   from the top, so both stay in view while cooking (owner, vision.md § The recipe page). The last
+   row takes the side column's extra height, so no gap opens between the title and the steps. */
+@media screen and (width >= 64rem) {
+  .recipe {
+    max-inline-size: none;
+  }
+
+  .recipe__layout {
+    display: grid;
+    grid-template-columns: minmax(0, var(--measure)) minmax(18rem, 1fr);
+    grid-template-rows: auto auto auto 1fr;
+    grid-template-areas:
+      'head side'
+      'method side'
+      'notes side'
+      'sources side';
+    gap: var(--space-6) var(--space-7);
+
+    & > * + * {
+      margin-block-start: 0;
+    }
+  }
+
+  .recipe__head {
+    grid-area: head;
+  }
+
+  .recipe__method {
+    grid-area: method;
+  }
+
+  .recipe__notes {
+    grid-area: notes;
+  }
+
+  .recipe__sources {
+    grid-area: sources;
+  }
+
+  .recipe__side {
+    grid-area: side;
+    align-self: start;
+
+    /* side.ts: only a column that fits the window stays in view. */
+    &[data-fits] {
+      position: sticky;
+      inset-block-start: var(--space-4);
+    }
+  }
+}
+
+.recipe__tools {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+
+  & a {
+    display: inline-flex;
+    align-items: center;
+    min-block-size: var(--target);
+  }
+}
+
+.recipe__side > * + * {
+  margin-block-start: var(--space-5);
+}
+
+.recipe__draft .draft {
+  margin-inline: 0 var(--space-2);
+}
+
+/* The facts to choose by, a card at the top of the side column. */
+.recipe__facts {
+  display: grid;
+  gap: var(--space-2);
+  padding: var(--space-4);
+  background: var(--surface);
+  border: var(--border);
+  border-radius: var(--radius);
+
+  & div {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 var(--space-2);
+  }
+
+  & dt {
+    font-weight: var(--fw-strong);
+    color: var(--muted);
+
+    &::after {
+      content: ':';
+    }
+  }
+}
+
+.recipe__hint {
+  color: var(--muted);
+  font-size: var(--fs-small);
+}
+
+/* An ingredient is a 44 px row with a box; ticked, the row is crossed out (no script needed). */
+.recipe__list {
+  margin-block-start: var(--space-2);
+
+  & li {
+    border-block-end: var(--border);
+  }
+
+  & label {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    min-block-size: var(--target);
+    padding-block: var(--space-1);
+    cursor: pointer;
+  }
+
+  & input {
+    flex-shrink: 0;
+    inline-size: 1.25rem;
+    block-size: 1.25rem;
+    margin: 0;
+  }
+
+  & label:has(:checked) > span {
+    text-decoration: line-through;
+    color: var(--muted);
+  }
+}
+
+.recipe__amount {
+  font-weight: var(--fw-strong);
+}
+
+.recipe__note {
+  color: var(--muted);
+}
+
+.recipe__steps {
+  margin-block-start: var(--space-2);
+  padding-inline-start: var(--space-5);
+
+  & li + li {
+    margin-block-start: var(--space-3);
+  }
+}
+
+.recipe__notes > * + *,
+.recipe__sources > * + * {
+  margin-block-start: var(--space-3);
+}
+
+/* Paper: the title, the ingredients and the steps (styling.md § Print). */
+@media print {
+  .recipe :is(.recipe__tools, .recipe__draft, .recipe__hint, .recipe__sources) {
+    display: none;
+  }
+
+  .recipe__list input {
+    display: none;
+  }
+
+  .recipe__list label:has(:checked) > span {
+    text-decoration: none;
+    color: inherit;
+  }
+}

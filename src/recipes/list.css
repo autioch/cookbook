@@ -1,0 +1,44 @@
+/* The list: a tile per recipe with a border, the name the link (styling.md § Ground rules). */
+.recipe-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 20rem), 1fr));
+  gap: var(--space-4);
+
+  & li {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    padding: var(--space-4);
+    padding-inline-start: var(--space-5);
+    background: var(--surface);
+    border: var(--border);
+    border-inline-start: 4px solid var(--margin);
+    border-radius: var(--radius);
+  }
+
+  & h2 {
+    font-size: var(--fs-h3);
+  }
+
+  & h2 a {
+    display: inline-flex;
+    align-items: center;
+    min-block-size: var(--target);
+    color: var(--ink);
+    text-decoration: none;
+
+    &:hover,
+    &:focus-visible {
+      text-decoration: underline;
+    }
+  }
+}
+
+.recipe-list__meta {
+  color: var(--muted);
+  font-size: var(--fs-small);
+}
+
+.recipe-list__missing {
+  font-weight: var(--fw-strong);
+}

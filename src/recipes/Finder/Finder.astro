@@ -1,0 +1,60 @@
+---
+// „Co mam w domu?” above the list: pick a meal and tick what's at home; the list keeps the recipes
+// that use it, the fewest missing first. Hidden until finder.ts runs: without a script the whole
+// list shows.
+import { CATEGORIES, type Category } from '../labels';
+import { PANTRY } from './match';
+import './Finder.css';
+
+interface Props {
+  products: string[];
+  categories: Category[];
+}
+
+const { products, categories } = Astro.props;
+---
+
+<div class="finder flow" hidden>
+  <fieldset class="finder__meals">
+    <legend>Posiłek</legend>
+    <ul role="list">
+      <li>
+        <label>
+          <input type="radio" name="posilek" value="" checked /> wszystkie
+        </label>
+      </li>
+      {categories.map((id) => (
+        <li>
+          <label>
+            <input type="radio" name="posilek" value={id} /> {CATEGORIES[id].toLowerCase()}
+          </label>
+        </li>
+      ))}
+    </ul>
+  </fieldset>
+  <fieldset class="finder__have">
+    <legend>Co masz w domu?</legend>
+    <p class="finder__hint">
+      Zaznacz, co masz. Tego nie trzeba zaznaczać, liczę jako zawsze w domu: {PANTRY.join(', ')}.
+    </p>
+    <ul role="list">
+      {products.map((product) => (
+        <li>
+          <label>
+            <input type="checkbox" name="mam" value={product} /> {product}
+          </label>
+        </li>
+      ))}
+    </ul>
+  </fieldset>
+  <div class="finder__end">
+    <button class="finder__clear" type="button">
+      Wyczyść wybór
+    </button>
+    <p role="status"></p>
+  </div>
+</div>
+
+<script>
+  import './finder';
+</script>

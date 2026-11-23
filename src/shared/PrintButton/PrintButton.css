@@ -1,0 +1,40 @@
+/* The print button: a quiet outlined button, a 44 px target; gone on paper and without scripts. */
+.print-button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-block-size: var(--target);
+  padding-inline: var(--space-4);
+  font: inherit;
+  font-weight: var(--fw-strong);
+  color: var(--accent);
+  background: var(--surface);
+  border: 1px solid var(--accent);
+  border-radius: var(--radius);
+  cursor: pointer;
+
+  & svg {
+    inline-size: 1.25rem;
+    block-size: 1.25rem;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linejoin: round;
+  }
+
+  &:hover {
+    background: var(--chip);
+  }
+}
+
+@media (scripting: none) {
+  .print-button {
+    display: none;
+  }
+}
+
+@media print {
+  .print-button {
+    display: none;
+  }
+}

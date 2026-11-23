@@ -1,0 +1,38 @@
+---
+// The list's rows: a recipe's name, summary and the facts to choose by. The finder reads the data
+// attributes and fills „Brakuje: …”.
+import { typeset } from '../shared/typeset';
+import { CATEGORIES, minutesText, portionsText, STATUS } from './labels';
+import { productsOf, type Recipe } from './recipes';
+import './list.css';
+
+interface Props {
+  recipes: Recipe[];
+}
+
+const { recipes } = Astro.props;
+---
+
+<ol class="recipe-list" role="list">
+  {recipes.map((recipe) => {
+    const { data } = recipe;
+    return (
+      <li
+        data-id={recipe.id}
+        data-products={JSON.stringify(productsOf(recipe))}
+        data-categories={JSON.stringify(data.categories)}
+      >
+        <h2>
+          <a href={`/przepisy/${recipe.id}/`}>{data.title}</a>
+        </h2>
+        <p>{typeset(data.summary)}</p>
+        <p class="recipe-list__meta">
+          {data.categories.map((c) => CATEGORIES[c]).join(', ')} · {minutesText(data.time.total)} ·{' '}
+          {portionsText(data.servings)}
+          {data.status === 'szkic' && <span class="draft">{STATUS.szkic}</span>}
+        </p>
+        <p class="recipe-list__missing" hidden />
+      </li>
+    );
+  })}
+</ol>
