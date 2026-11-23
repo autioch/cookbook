@@ -26,6 +26,9 @@ the time it takes; a shopping list; a look at how other sites do it (the owners 
 - **Search by name** over the list.
 - **Print a cookbook** — chosen recipes as one PDF, a notebook for a gift.
 
-**Competitors to compare** (not yet researched): Kwestia Smaku, AniaGotuje, Kuchnia Lidla,
+**Competitors to compare** (not yet researched). The sites the family uses (owner's links):
+Kwestia Smaku, AniaGotuje, Kuchnia Lidla, Moje Wypieki, Moja Delicja, Olga Smile, Poezja Smaku,
+Jadłonomia, Ervegan, Onet Gotowanie, Niebo na talerzu, Jest Pięknie, Magiczny Składnik, Ale
+Meksyk, Madame Edith, Moje kuchenne rewelacje, Pyszności, Kuchnie Orientalne, Winiary. Others:
 Smaker, Przepisy.pl; abroad BBC Good Food, Serious Eats; "what can I make" finders such as
 SuperCook.
