@@ -47,10 +47,10 @@ stages). What her verdict decides, each with a recommendation:
 
 Steps only the owner can take, when they choose.
 
-- **Show the deploy preview to your wife** with the doc for her answers, in Polish — what's on
-  the site, the ways to enter recipes, the decisions and the ideas to pick
-  ([Nasza kuchnia — do przejrzenia i wyboru](https://claude.ai/artifact/9sv9oc7CAWvwGvakZvjg5g),
-  private until you share it). Her answers come back into this backlog.
+- **Send your wife `/wybor/` on this PR's deploy preview**: what's on the site, the decisions,
+  the comparison's rows and the ideas, each with an answer to tick and a note, and a box for her
+  own ideas. It remembers her answers on her phone; „Wyślij Kubie” sends you the summary. Paste
+  it to the agent: the answers come back into this backlog and the page is removed before merge.
 - **Paste the recipes the agent couldn't use** from your list:
   - Ervegan, [twarożek z nerkowców](https://ervegan.com/2015/01/idealny-twarozek-z-orzechow-nerkowca/):
     the site blocks bots (captcha). It becomes the second version of Ser z nerkowców.

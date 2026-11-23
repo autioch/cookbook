@@ -1,0 +1,119 @@
+---
+// Temporary: the owner's wife picks what the site should have. Lives only on a deploy preview,
+// kept out of the index, the sitemap and the menu; her summary comes back into docs/backlog.md.
+import PageLayout from '../shared/PageLayout/PageLayout.astro';
+import { SECTIONS } from '../survey/items';
+import { optionsOf } from '../survey/summary';
+import '../survey/survey.css';
+---
+
+<PageLayout
+  title="Co chcesz na stronie?"
+  description="Wybór tego, co ma mieć nasza strona z przepisami."
+  noindex
+>
+  <main id="main" class="flow survey">
+    <h1>Co chcesz na stronie?</h1>
+    <p class="lede">
+      Przy każdej rzeczy wybierz odpowiedź. Jeśli chcesz coś dopisać, dotknij „Dodaj uwagę”.
+    </p>
+    <p>
+      Wszystko zapisuje się samo w tym telefonie: możesz przerwać i wrócić później. Na końcu jest
+      przycisk „Wyślij Kubie”. Nie trzeba odpowiadać na wszystko.
+    </p>
+    <nav class="survey__toc" aria-label="Części">
+      <ol>
+        {SECTIONS.map((section) => (
+          <li>
+            <a href={`#${section.id}`}>{section.title}</a>
+          </li>
+        ))}
+        <li>
+          <a href="#pomysly">Twoje pomysły</a>
+        </li>
+        <li>
+          <a href="#wyslij">Wyślij</a>
+        </li>
+      </ol>
+    </nav>
+
+    {SECTIONS.map((section) => (
+      <section class="flow survey__section" id={section.id} aria-labelledby={`${section.id}-h`}>
+        <h2 id={`${section.id}-h`}>{section.title}</h2>
+        <p>{section.intro}</p>
+        <ol class="survey__items" role="list">
+          {section.items.map((item) => (
+            <li class="survey__item">
+              <fieldset>
+                <legend>{item.title}</legend>
+                {item.text && <p>{item.text}</p>}
+                {item.seen && <p class="survey__meta">Mają to: {item.seen}</p>}
+                {item.rec && <p class="survey__meta">Polecam: {item.rec}</p>}
+                <div class="survey__options">
+                  {optionsOf(item).map((option) => (
+                    <label>
+                      <input type="radio" name={item.id} value={option} /> {option}
+                    </label>
+                  ))}
+                </div>
+                <details class="survey__note">
+                  <summary>Dodaj uwagę</summary>
+                  <label>
+                    Uwaga: {item.title}
+                    <textarea name={`note-${item.id}`} rows="3"></textarea>
+                  </label>
+                </details>
+              </fieldset>
+            </li>
+          ))}
+        </ol>
+      </section>
+    ))}
+
+    <section class="flow survey__section" id="pomysly" aria-labelledby="pomysly-h">
+      <h2 id="pomysly-h">Twoje pomysły</h2>
+      <label class="survey__ideas">
+        Co jeszcze chcesz na stronie? Wszystko, co przyjdzie Ci do głowy.
+        <textarea name="ideas" rows="6"></textarea>
+      </label>
+    </section>
+
+    <section class="flow survey__section" id="wyslij" aria-labelledby="wyslij-h">
+      <h2 id="wyslij-h">Wyślij</h2>
+      <p class="survey__nojs">
+        Zapis i wysyłanie działają dopiero z włączonym JavaScriptem w przeglądarce.
+      </p>
+      <div class="flow survey__send" hidden>
+        <p>
+          „Wyślij Kubie” otwiera menu telefonu: wybierz WhatsAppa, SMS albo maila. Na komputerze
+          tekst się skopiuje i wystarczy go wkleić.
+        </p>
+        <div class="survey__actions">
+          <button type="button" class="survey__share">
+            Wyślij Kubie
+          </button>
+          <button type="button" class="survey__copy">
+            Kopiuj tekst
+          </button>
+        </div>
+        <p class="survey__done" role="status"></p>
+        <label class="survey__ideas">
+          Tak wygląda wiadomość
+          <textarea class="survey__summary" rows="12" readonly></textarea>
+        </label>
+        <button type="button" class="survey__reset">
+          Wyczyść wszystkie odpowiedzi
+        </button>
+      </div>
+    </section>
+
+    <div class="survey__bar">
+      <p class="survey__progress" role="status"></p>
+      <a href="#wyslij">Do wysyłki</a>
+    </div>
+  </main>
+</PageLayout>
+
+<script>
+  import '../survey/survey';
+</script>
