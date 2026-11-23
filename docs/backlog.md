@@ -11,7 +11,9 @@ The proof of concept is for the owner's wife to judge (owner: experiment first, 
 stages). What her verdict decides, each with a recommendation:
 
 - **How recipes get in** — the proposals, in the order to try: [research/cms.md](research/cms.md).
-  Recommended: send to the agent now (works today, and for the old notebooks), Pages CMS tried
+  Recommended: send to the agent now (works today, and for the old notebooks); if she likes it,
+  automate it as „Wklej cokolwiek” on our site (server code — owner to decide; her doc gets it
+  after); Firebase rejected. Pages CMS tried
   next (the owner installs its GitHub App; the agent writes `.pages.yml`; a trial shows whether
   its form handles ingredients in sections, else the model flattens). Then: her edits straight to
   `main`, or through a PR the owner merges.
