@@ -74,10 +74,10 @@ One column that widens; a media query only where a layout must change shape. Nam
 when a query adds one; keep them few; reflow with CSS only. The page never scrolls sideways at
 320 px.
 
-| Band  | Width         | What changes                                                                                            |
-| ----- | ------------- | ------------------------------------------------------------------------------------------------------- |
-| phone | 320 px and up | One column, `--gutter`                                                                                  |
-| wide  | 64rem and up  | Recipe page: steps at `--measure`, ingredients beside them, sticky; the page `--container` (72rem) wide |
+| Band  | Width         | What changes                                                                                                                                                                   |
+| ----- | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| phone | 320 px and up | One column, `--gutter`                                                                                                                                                         |
+| wide  | 64rem and up  | Recipe page: two columns from the top — title and steps at `--measure`, the facts card and ingredients beside them (sticky when they fit); the page `--container` (72rem) wide |
 
 The list's tiles fill the width in columns of at least 20rem (a grid, no query).
 

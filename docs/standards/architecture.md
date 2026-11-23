@@ -19,7 +19,7 @@ src/
 │                        # prywatnosc, 404; endpoints robots.txt.ts, sitemap.xml.ts,
 │                        # .well-known/security.txt.ts
 ├─ recipes/              # RecipePage, RecipeList, Finder (match.ts its logic, finder.ts the page);
-│                        # labels.ts (meals, heat, statuses and amounts in Polish), recipes.ts
+│                        # side.ts; labels.ts (meals, heat, statuses and amounts in Polish), recipes.ts
 │                        # (the collection A–Z, a recipe's products), jsonLd.ts
 └─ shared/               # the site shell: styles.css (tokens, reset, base), fonts.css, consts.ts
                          # (AUTHOR, SITE_NAME), pages.ts (menu, footer, sitemap), slug.ts,
@@ -38,8 +38,9 @@ docs/                    # agent docs, the vision, research — never published
 
 - **Astro, static output.** `npm run build` writes `dist/`; no adapter, no on-demand rendering, no
   server code — a Netlify Function is a last resort, agreed with the owner first.
-- **Scripts:** two, each our TypeScript module in an Astro `<script>`, bundled to `_astro/*.js`
-  (`assetsInlineLimit: 0` keeps it out of the page): the print button and the list's finder. No
+- **Scripts:** three, each our TypeScript module in an Astro `<script>`, bundled to `_astro/*.js`
+  (`assetsInlineLimit: 0` keeps it out of the page): the print button, the list's finder and the
+  recipe's side column (`side.ts`: kept in view only when it fits the window). No
   UI framework. **The markup is complete without them:** the list shows every recipe, and a
   control that needs a script is hidden until it runs (the finder's `hidden`, the print button's
   `@media (scripting: none)`). A recipe's ticked ingredients are CSS (`:has(:checked)`).

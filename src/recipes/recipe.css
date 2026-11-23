@@ -5,52 +5,65 @@
   max-inline-size: var(--measure);
   padding-block-end: var(--space-7);
 
-  & h2 {
-    margin-block-start: var(--space-6);
-  }
-
   & h3 {
     margin-block-start: var(--space-4);
   }
 }
 
-.recipe__body > * + * {
-  margin-block-start: var(--space-4);
+/* The page's parts in reading order: title, facts and ingredients, steps, notes, sources. */
+.recipe__layout > * + * {
+  margin-block-start: var(--space-6);
 }
 
+/* Wide: the title and the steps in the main column; the facts and the ingredients beside them
+   from the top, so both stay in view while cooking (owner, vision.md § The recipe page). The last
+   row takes the side column's extra height, so no gap opens between the title and the steps. */
 @media screen and (width >= 64rem) {
   .recipe {
     max-inline-size: none;
-
-    & > :not(.recipe__body) {
-      max-inline-size: var(--measure);
-    }
   }
 
-  .recipe__body {
+  .recipe__layout {
     display: grid;
     grid-template-columns: minmax(0, var(--measure)) minmax(18rem, 1fr);
-    gap: var(--space-7);
-    align-items: start;
+    grid-template-rows: auto auto auto 1fr;
+    grid-template-areas:
+      'head side'
+      'method side'
+      'notes side'
+      'sources side';
+    gap: var(--space-6) var(--space-7);
 
     & > * + * {
       margin-block-start: 0;
     }
   }
 
-  .recipe__method {
-    grid-column: 1;
-    grid-row: 1;
+  .recipe__head {
+    grid-area: head;
   }
 
-  /* Beside the steps and in view while scrolling; scrolls on its own if taller than the window. */
-  .recipe__ingredients {
-    grid-column: 2;
-    grid-row: 1;
-    position: sticky;
-    inset-block-start: var(--space-4);
-    max-block-size: calc(100dvb - 2 * var(--space-4));
-    overflow-block: auto;
+  .recipe__method {
+    grid-area: method;
+  }
+
+  .recipe__notes {
+    grid-area: notes;
+  }
+
+  .recipe__sources {
+    grid-area: sources;
+  }
+
+  .recipe__side {
+    grid-area: side;
+    align-self: start;
+
+    /* side.ts: only a column that fits the window stays in view. */
+    &[data-fits] {
+      position: sticky;
+      inset-block-start: var(--space-4);
+    }
   }
 }
 
@@ -68,13 +81,22 @@
   }
 }
 
+.recipe__side > * + * {
+  margin-block-start: var(--space-5);
+}
+
 .recipe__draft .draft {
   margin-inline: 0 var(--space-2);
 }
 
+/* The facts to choose by, a card at the top of the side column. */
 .recipe__facts {
   display: grid;
   gap: var(--space-2);
+  padding: var(--space-4);
+  background: var(--surface);
+  border: var(--border);
+  border-radius: var(--radius);
 
   & div {
     display: flex;

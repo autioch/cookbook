@@ -64,10 +64,12 @@ the family's notes.
 
 ## The recipe page
 
-Top down: back to the list and „Drukuj przepis”; the title; a draft's mark; the summary; the facts
-(meal, time, servings, heat, children); **Składniki**, a checklist per section; **Przygotowanie**,
-numbered per section (from 64rem the steps are the main column, the ingredients beside them in
-view); **Uwagi**; **Na podstawie** (the sources). Printed: the title, the facts, the ingredients
+Top down: back to the list and „Drukuj przepis”, across the page; the title; a draft's mark; the
+summary; the facts (meal, time, servings, heat, children) in a card; **Składniki**, a checklist
+per section; **Przygotowanie**, numbered per section; **Uwagi**; **Na podstawie** (the sources).
+From 64rem two columns from the top (owner): the title, the steps, the notes and the sources on
+the left; the facts card and the ingredients on the right, kept in view while the steps scroll
+when they fit the window. Printed: the title, the facts, the ingredients
 and the steps.
 
 ## Site map
