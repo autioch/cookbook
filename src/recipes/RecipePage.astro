@@ -66,12 +66,10 @@ const jsonLd = recipeJsonLd(data, new URL(Astro.url.pathname, Astro.site).href, 
               <dd>{SPICE[data.spice]}</dd>
             </div>
           )}
-          {data.kids !== undefined && (
-            <div>
-              <dt>Dzieciom</dt>
-              <dd>{KIDS[data.kids]}</dd>
-            </div>
-          )}
+          <div>
+            <dt>Dzieciom</dt>
+            <dd>{data.kids === undefined ? 'jeszcze nie wiemy' : KIDS[data.kids]}</dd>
+          </div>
         </dl>
 
         <section aria-labelledby="skladniki">

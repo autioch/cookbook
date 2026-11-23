@@ -1,27 +1,57 @@
-# Editing without Markdown — options (2026-11)
+# Getting recipes in without Markdown — proposals (2026-11)
 
-Input for the first decision ([backlog.md](../backlog.md)), not a rule. The question: how does the
-owner's wife add and edit a recipe without touching Markdown, on a static site with no server?
+Input for the first decision ([backlog.md § Now](../backlog.md#now--her-first-look)), not a rule.
+The question: how does the owner's wife add and edit a recipe, with neither her nor the owner
+touching Markdown, on a static site with no server?
 
-**Verdict: viable without an admin panel of our own.** No login, no accounts and no server code on
-the site: either a hosted editor that writes the recipe files to the repo, or the agent writing
-them from what she sends. Both keep the site static and the CSP as it is.
+**Verdict: no admin panel of our own.** Every proposal below writes recipe files to the repo; the
+site stays static, its CSP and [trust model](../standards/security.md#trust-model) unchanged.
 
-| Option                                                                        | How she edits                                                                        | Cost to the site                                                                                                     | Verdict                                                                  |
-| ----------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
-| **Pages CMS** (hosted, open source; `.pages.yml` in the repo)                 | A form on app.pagescms.org; invited **by e-mail, no GitHub account** (collaborators) | None: a config file. A GitHub App with write access to this repo; her edits are commits (CI and Netlify run on them) | **Recommended to try first**                                             |
-| **Agent writes it** (she sends text, a photo of a page, a link, a voice note) | Through the owner, or a chat session; the agent writes the file and opens a PR       | None                                                                                                                 | Works today; the fallback, and the way for bulk entry from old notebooks |
-| Sveltia / Decap CMS at `/admin/`                                              | A form on our own site                                                               | A page loading a large script, a CSP opening `connect-src` to GitHub, an OAuth provider; she needs a GitHub account  | Possible, more to run and secure                                         |
-| Decap + Netlify Identity / Git Gateway                                        | A form on our own site, e-mail login                                                 | Git Gateway is deprecated by Netlify (Identity's 2025 deprecation reportedly reversed in 2026; Git Gateway's not)    | No                                                                       |
-| An admin panel of our own (login, database, functions)                        | Our own forms                                                                        | Server code, accounts, secrets, Netlify Functions quota                                                              | No — the most to build and secure for one editor                         |
+## 1. Send it to the agent — works today (recommended now, and for the old notebooks)
 
-**Open for the spec:** with Pages CMS, commits by a collaborator carry no name by default; whether
-her edits go straight to `main` (CI and Netlify check them; a broken file fails the build and the
-old site stays up) or through a branch the owner merges. Photos (uploads) — size limits and the
-page weight budget.
+She sends a recipe the way she has it: typed text, a photo of a notebook page, a link, a voice note
+written out. The owner pastes it into a Claude session ("Dodaj przepis: …"); the agent writes the
+file (amounts, steps, products for the finder), opens a PR, and its deploy preview shows the page.
+She looks; "merge" publishes it. Corrections the same way ("w schabowym 4 jajka, nie 2").
 
-Sources: [Pages CMS — Collaborators](https://pagescms.org/docs/configuration/collaborators/) ·
-[Netlify — Deprecation of Netlify Identity](https://www.netlify.com/changelog/deprecation-netlify-identity/) ·
-[Netlify forum — Identity is staying (Feb 2026)](https://answers.netlify.com/t/netlify-identity-is-staying-feb-2026-reversal-what-changed-whos-affected-and-how-to-proceed/162733) ·
-[Decap discussion #7419](https://github.com/decaporg/decap-cms/discussions/7419) ·
-[Sveltia CMS](https://github.com/sveltia/sveltia-cms)
+- **For:** nothing to set up or learn; handles messy input (a photographed page); the agent keeps
+  the format and the finder's products consistent.
+- **Against:** goes through the owner and a session; minutes to hours, not instant.
+
+## 2. Pages CMS — a form she fills herself (try next)
+
+A hosted, open-source editor for files in a GitHub repo
+([docs](https://pagescms.org/docs/)). She's invited **by e-mail, no GitHub account**
+([collaborators](https://pagescms.org/docs/configuration/collaborators/)), opens
+app.pagescms.org, sees „Przepisy”, edits or adds one in a form (title, summary, meals, servings,
+times, ingredients, steps, notes); saving commits the file and Netlify publishes it in a minute or
+two.
+
+- **Set-up:** the owner installs the Pages CMS GitHub App on `autioch/cookbook` and invites her;
+  the agent writes `.pages.yml` (the form, from `src/content.config.ts`).
+- **Open, settled by a trial:** the docs show lists of objects but no list inside a list
+  ([list](https://pagescms.org/docs/configuration/content/list/)) — our ingredients are sections
+  of items. If the form can't, the model flattens (each ingredient names its part of the dish).
+  Also untested: use on a phone; its pricing (open source, self-hostable, the hosted app's terms
+  unstated).
+- **For:** she's independent; edits are git commits (history, undo).
+- **Against:** a third-party app with write access to the repo; her saves go to `main` (a broken
+  file fails the build and the old site stays up) unless we route them through a branch; a form is
+  slower than typing for a long recipe.
+
+## 3. A Google Form — an alternative to 2, if a form suits her but Pages CMS doesn't
+
+She fills a Google Form („Nowy przepis”) on her phone; answers land in a Sheet; the agent turns
+new rows into files and a PR. Needs the session's Google Drive access and the owner to trigger it.
+Good for new recipes, poor for editing an existing one — that goes back to 1.
+
+## Not recommended
+
+| Option                                                 | Why not                                                                                                                                                                                                                                                                                                            |
+| ------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Sveltia or Decap CMS at `/admin/`                      | A large script on our own site, the CSP opened to GitHub, an OAuth provider to run; she'd need a GitHub account                                                                                                                                                                                                    |
+| Decap + Netlify Identity / Git Gateway                 | Git Gateway is deprecated by Netlify ([changelog](https://www.netlify.com/changelog/deprecation-netlify-identity/); Identity's deprecation reportedly reversed in 2026, [forum](https://answers.netlify.com/t/netlify-identity-is-staying-feb-2026-reversal-what-changed-whos-affected-and-how-to-proceed/162733)) |
+| An admin panel of our own (login, database, functions) | Server code, accounts, secrets and the Netlify Functions quota — the most to build and secure, for one editor                                                                                                                                                                                                      |
+
+**Recommendation:** 1 now; trial 2 once she's seen the site; 3 only if she wants a form and 2
+fails.

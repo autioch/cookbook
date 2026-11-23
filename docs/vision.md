@@ -56,7 +56,8 @@ One Markdown file per recipe, `src/content/recipes/<slug>.md`; the schema in
 `src/content.config.ts` fails the build on a missing or wrong field. It holds the title, a
 one-sentence summary, the meals (`categories`: sniadanie, obiad, zupa, kolacja, deser, przekaska —
 several allowed), the status (`szkic`, `sprawdzony`), servings, time (hands-on and total minutes),
-optionally the heat (`spice`, 0–3) and the children's verdict (`kids`: tak, tak-sobie, nie), the
+optionally the heat (`spice`, 0–3) and the children's verdict (`kids`: tak, tak-sobie, nie;
+the page says „jeszcze nie wiemy” without it — never guessed for a draft), the
 ingredients and the steps — each a list of sections, one per part of the dish (the cutlet, the
 potatoes, the salad) — and the sources. An ingredient has a name, optionally an amount, a unit, a
 note, the `product` the finder knows it by (the name when absent) and `optional`. The body holds
