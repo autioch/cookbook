@@ -20,12 +20,17 @@ stages). What her verdict decides, each with a recommendation:
 - **What a recipe holds** — which of the facts stay (heat, children's verdict, time, servings),
   what's missing (a photo, a difficulty, a log of when it was cooked, tags beyond meals).
 - **The finder** — whether ticking products works for her; what counts as always at home
-  (now: sól, pieprz, olej, woda, cukier); a typed box once the list grows.
+  (now: sól, pieprz, olej, woda, cukier). With 26 recipes the list has 90 products, a long
+  scroll on a phone: a typed box, or grouping (warzywa, nabiał, mięso), is due.
+- **Versions of one dish** — the family's links repeat a dish from different sites (cashew cheese:
+  Olga Smile, Ervegan). Recommended: one page per dish with a section per version (as Dżem
+  wiśniowy does now); the other way is separate pages that link each other.
 - **The look** — the notebook idea (paper, fountain-pen blue, a red margin), the font, the name
   „Nasza kuchnia”.
 - **Whose site it says it is** — the footer and Prywatność name the owner (`AUTHOR`); she runs it.
   Her name too, hers alone, or a family name.
-- **Competitors** — the sites she and the owner use; then a comparison in `docs/research/`.
+- **Competitors** — the sites she and the owner use are listed in
+  [research/ideas.md](research/ideas.md); next, a comparison in `docs/research/`.
 
 ## Later
 
@@ -33,9 +38,9 @@ stages). What her verdict decides, each with a recommendation:
 - **A shopping list** (owner) — several recipes summed into one list; tinctures' Lista zakupów is
   the model.
 - **Scaling to servings** — needs units with fixed names (tinctures' `scale.ts`).
-- **The six drafts cooked and corrected** — Schabowy, Zupa pomidorowa, Tosty francuskie,
-  Szakszuka, Pieczone jabłka, Jajka faszerowane are web drafts (`status: szkic`); the family adds
-  heat and the children's verdict once cooked.
+- **The drafts cooked and corrected** — all 26 recipes are web drafts (`status: szkic`,
+  [sources.md](sources.md)); the family corrects amounts and estimated servings and adds heat and
+  the children's verdict once cooked.
 - **A dark theme** — only if she wants it (owner).
 
 ## Owner
@@ -46,7 +51,20 @@ Steps only the owner can take, when they choose.
   the site, the ways to enter recipes, the decisions and the ideas to pick
   ([Nasza kuchnia — do przejrzenia i wyboru](https://claude.ai/artifact/9sv9oc7CAWvwGvakZvjg5g),
   private until you share it). Her answers come back into this backlog.
-- **Send the sites you both use** for recipes, for the comparison.
+- **Paste the recipes the agent couldn't use** from your list:
+  - Ervegan, [twarożek z nerkowców](https://ervegan.com/2015/01/idealny-twarozek-z-orzechow-nerkowca/):
+    the site blocks bots (captcha). It becomes the second version of Ser z nerkowców.
+  - Joe Monster, [kurczak jak z KFC](https://joemonster.org/art/37126/Jak_w_domu_zrobic_kurczaka_dokladnie_takiego_jak_z_KFC):
+    the site blocks bots (403).
+  - Winiary, [sorbety i lody](https://www.winiary.pl/porady/sorbety-i-lody-domowe-idealne-na-lato/):
+    an article with four recipes, most without amounts (the sorbet has no fruit weight). Which one,
+    and a page with amounts?
+  - Wikipedia, [Arancini](https://pl.wikipedia.org/wiki/Arancini): a description with no amounts.
+    A recipe page for it is needed.
+  - Magiczny Składnik, [frytki](https://magicznyskladnik.pl/magazyn/jak-smazyc-frytki-test-10-odmian-ziemniakow-i-7-metod-smazenia/):
+    a test of methods, with no potato amounts. Material for the knowledge base, not a recipe.
+  - Skipped: the second Joe Monster link is a joke article, not a recipe; the surimi salad link
+    was in the list twice and became one recipe.
 - **Repo settings** as on `tinctures`: Dependabot security updates on; the npm auto-triage preset
   for development alerts.
 - **Netlify**: confirm the build settings in the UI are empty (`netlify.toml` holds them) and HTTPS
