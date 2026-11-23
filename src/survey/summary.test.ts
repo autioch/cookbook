@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import type { Section } from './items.ts';
+import { SECTIONS, type Section } from './items.ts';
 import { optionsOf, parseAnswers, progress, progressText, summaryText } from './summary.ts';
 
 const sections: Section[] = [
@@ -76,4 +76,9 @@ test('summaryText of a finished page has no leftover line', () => {
 test('optionsOf defaults to Tak / Może / Nie', () => {
   assert.deepEqual(optionsOf({}), ['Tak', 'Może', 'Nie']);
   assert.deepEqual(optionsOf({ options: ['A'] }), ['A']);
+});
+
+test('every question on the page has its own id', () => {
+  const ids = SECTIONS.flatMap((s) => s.items.map((i) => i.id));
+  assert.equal(new Set(ids).size, ids.length);
 });

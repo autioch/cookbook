@@ -2,7 +2,8 @@
 
 Research input, November 2026, for the owners' review: not rules and not agreed work. What other
 sites put on the **whole site** (part A) and on **one recipe's page** (part B), set against what
-Nasza kuchnia has, and how the ideas in [ideas.md](ideas.md) look on the same sites (part C). Rows
+Nasza kuchnia has, how the ideas in [ideas.md](ideas.md) look on the same sites (part C), the owner's later ideas
+(D), what the sister site Nalewki Jakuba offers to reuse (E) and pages to add (F). Rows
 are numbered (A1, B5…) so a review can point at them. The sites are the ones the family cooks from
 (the owner's links); each was read from its home page and the recipe page the owner linked, by its
 text and its page source. Anything else on a site is unread.
@@ -149,6 +150,58 @@ Each idea from [ideas.md](ideas.md) and the agent's new ones (C14–C22) against
 | C20 | A photo of the handwritten original beside the recipe              | nobody                                       | maybe: for the old notebooks                                |
 | C21 | „Ostatnio dodane” on the home page                                 | blogs list newest first                      | maybe                                                       |
 | C22 | A milder version for children (less chilli, no wine)               | nobody                                       | maybe: as a note per recipe                                 |
+
+## D. The owner's new ideas
+
+Added after the first pass (owner). Facts here are from the pages linked; nothing was tested
+with a real machine or account.
+
+| #   | Idea                                                                | What was found                                                                                                                                                                                                                                                                                                                                                                        | Take?                                                                                                               |
+| --- | ------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+| D1  | Thermomix: our recipes in Cookidoo                                  | Cookidoo's „Utworzone przepisy” → „Importuj przepis” takes a link from other recipe sites and tries to detect the ingredients and settings; not every Thermomix mode is supported ([Cookidoo tutorial](https://cookidoo.thermomix.com/foundation/tutorials/en-US/courses/how-to-import/import-followthesesteps)). Our pages carry schema.org `Recipe` data, which such importers read | **yes**: try one link with her account; nothing to build if it works                                                |
+| D2  | Thermomix settings in a recipe                                      | Cookidoo recipes give time, temperature and speed per step; none of the 18 sites does                                                                                                                                                                                                                                                                                                 | maybe: a „Thermomix” version of a recipe (B23) where the family cooks it that way                                   |
+| D3  | Lidlomix (Monsieur Cuisine smart)                                   | Its app keeps your own recipes behind a My Lidl account, typed in by hand, or in a browser; no import from a link was found ([App Store](https://apps.apple.com/pl/app/id1577138369), [tabletowo](https://www.tabletowo.pl/gdzie-kupic-lidlomix-cena-2026-opinie-na-raty/))                                                                                                           | maybe: a Lidlomix version, as D2                                                                                    |
+| D4  | Recipe sites for those machines                                     | Cookidoo (paid), [monsieur-cuisine.com/pl/przepisy](https://www.monsieur-cuisine.com/pl/przepisy), Kuchnia Lidla (LI)                                                                                                                                                                                                                                                                 | maybe: into this comparison once she names the ones she uses                                                        |
+| D5  | Shopping-list apps (Bring!)                                         | Bring! imports a recipe from its schema.org data; its button is a third-party script ([Bring! guide](https://sites.google.com/getbring.com/bring-import-dev-guide/web-to-app-integration))                                                                                                                                                                                            | yes without the button: share our link into the app; test once                                                      |
+| D6  | Recipe-keeper apps (Paprika, Mealie, Nextcloud Cookbook)            | They import by schema.org `Recipe` ([Nextcloud forum](https://help.nextcloud.com/t/cookbook-app-recipe-schema/214131))                                                                                                                                                                                                                                                                | have: the JSON-LD on every recipe                                                                                   |
+| D7  | A week's plan in her calendar                                       | Nalewki makes the calendar file in the page (E5)                                                                                                                                                                                                                                                                                                                                      | maybe, with C3                                                                                                      |
+| D8  | Other kit: air fryer, slow cooker, multicooker                      | none of the 18 tags by kit                                                                                                                                                                                                                                                                                                                                                            | maybe: a tag per recipe, a version with that kit's settings                                                         |
+| D9  | School lunch boxes (śniadaniówki): what goes in, how to compose one | AG tags recipes „dla dzieci”; no site seen composes a box                                                                                                                                                                                                                                                                                                                             | **yes**: a page (bread or grain, something filling, a vegetable, a fruit), each line sourced, and a tag „do szkoły” |
+| D10 | Scale to a tin or a pot                                             | The arithmetic: a rectangle's area is a × b, a round tin's π × r²; amounts scale by the ratio of areas (same depth). MW converts per recipe, NT has a widget                                                                                                                                                                                                                          | **yes**: a tool, and on every cake                                                                                  |
+| D11 | Can it be frozen, for how long                                      | Soups and stews keep 2–3 months frozen for quality; at −18 °C food stays safe indefinitely ([FoodSafety.gov](https://www.foodsafety.gov/food-safety-charts/cold-food-storage-charts))                                                                                                                                                                                                 | **yes**: one line per recipe („Można mrozić: 2–3 miesiące”), sourced, and a page on freezing                        |
+
+## E. What Nalewki Jakuba has that fits here
+
+The sister site ([nalewki.jakub.page](https://nalewki.jakub.page)) runs on the same stack; these
+can be copied and adapted (CLAUDE.md § What to do when).
+
+| #   | On Nalewki                                                                                             | Here                          | Take?                                 |
+| --- | ------------------------------------------------------------------------------------------------------ | ----------------------------- | ------------------------------------- |
+| E1  | Przelicz przepis: any ingredient, how much you have, every amount follows; kept in the URL and printed | B5, C1                        | **yes**: the code exists (`scale.ts`) |
+| E2  | Lista zakupów from several recipes                                                                     | C2                            | **yes**                               |
+| E3  | Składniki: a page per ingredient, grouped                                                              | C15                           | yes                                   |
+| E4  | Sprzęt: a page per tool, with its recipes                                                              | D1–D3, D8, tins and pots      | yes, once there is kit to describe    |
+| E5  | Dodaj do kalendarza: the calendar file made in the page                                                | D7                            | maybe                                 |
+| E6  | Drukuj etykiety: a label to print                                                                      | jam jars, freezer boxes (D11) | maybe                                 |
+| E7  | Dziennik and Próby on a recipe                                                                         | C6, B23                       | yes                                   |
+| E8  | Baza wiedzy: Porady, Dlaczego to działa, Bezpieczeństwo, Słowniczek, Co poszło nie tak                 | A7, B24, D11                  | **yes**                               |
+| E9  | Kalendarz sezonu, Plan roku                                                                            | A5, C3                        | maybe                                 |
+| E10 | „Mam” column, crossed out without a script                                                             | B9                            | have                                  |
+| E11 | Zgłoś poprawkę, O stronie § Kopiowanie, `llms.txt`                                                     | —                             | maybe                                 |
+
+## F. Pages to add
+
+A menu shaped like Nalewki's: **Przepisy · Składniki · Sprzęt · Narzędzia · Baza wiedzy**, plus
+one the family asked for.
+
+| #   | Page             | Holds                                                                                             | Take?                                     |
+| --- | ---------------- | ------------------------------------------------------------------------------------------------- | ----------------------------------------- |
+| F1  | Narzędzia        | Przelicz na blaszkę lub garnek (D10), miary kuchenne (A8), lista zakupów (C2), plan tygodnia (C3) | **yes**                                   |
+| F2  | Baza wiedzy      | Mrożenie (D11), zamienniki (C9), techniki, słowniczek, co poszło nie tak                          | **yes**                                   |
+| F3  | Śniadaniówki     | What goes in a school box, compositions, recipes tagged „do szkoły” (D9)                          | **yes**                                   |
+| F4  | Składniki        | A page per ingredient: what uses it (C15)                                                         | yes                                       |
+| F5  | Sprzęt           | Thermomix, Lidlomix, piekarnik, blaszki: what the family has and its recipes (D1–D3)              | maybe                                     |
+| F6  | Chcemy spróbować | The drafts not yet cooked (C17)                                                                   | maybe: a filter on the list may be enough |
 
 ## What stands out
 

@@ -340,6 +340,122 @@ export const SECTIONS: Section[] = [
       },
     ],
   },
+  {
+    id: 'sprzet',
+    title: 'Thermomix, Lidlomix i inne aplikacje',
+    intro: 'Jak strona może współpracować ze sprzętem i aplikacjami, których używasz.',
+    items: [
+      {
+        id: 'tm-import',
+        title: 'Nasze przepisy w Cookidoo (Thermomix)',
+        text: 'Cookidoo umie zaimportować przepis z linku do innej strony. Wystarczyłoby wkleić tam link do naszego przepisu.',
+        seen: 'Cookidoo ma import z linku; trzeba sprawdzić na Twoim koncie',
+        rec: 'Tak',
+      },
+      {
+        id: 'tm-steps',
+        title: 'Wersja przepisu na Thermomix',
+        text: 'Przy krokach czas, temperatura i obroty, jak w Cookidoo.',
+        seen: 'żadna z 18 stron',
+        rec: 'Może',
+      },
+      {
+        id: 'mc-steps',
+        title: 'Wersja przepisu na Lidlomix',
+        text: 'Aplikacja Lidlomixa nie importuje z linku, przepis trzeba przepisać ręcznie. My podalibyśmy ustawienia.',
+        rec: 'Może',
+      },
+      {
+        id: 'tm-sites',
+        title: 'Strony z przepisami na Thermomix albo Lidlomix',
+        text: 'Których używasz? Wpisz je w uwadze, dodam je do porównania.',
+        options: ['Używam, wpisuję w uwadze', 'Nie używam'],
+      },
+      {
+        id: 'bring',
+        title: 'Przepis do aplikacji z listą zakupów (np. Bring!)',
+        text: 'Udostępniasz link do przepisu w aplikacji i składniki trafiają na listę.',
+        rec: 'Tak',
+      },
+      {
+        id: 'kit',
+        title: 'Znaczki sprzętu: frytkownica beztłuszczowa, wolnowar, multicooker',
+        text: 'Żeby od razu widzieć, co zrobić w danym sprzęcie.',
+        rec: 'Może',
+      },
+      {
+        id: 'calendar',
+        title: 'Plan obiadów w kalendarzu telefonu',
+        text: 'Jak na stronie z nalewkami: jeden przycisk dodaje dni do kalendarza.',
+        rec: 'Może',
+      },
+      {
+        id: 'labels',
+        title: 'Etykiety do wydruku: słoiki z dżemem, pudełka do zamrażarki',
+        text: 'Nazwa i data, do naklejenia.',
+        rec: 'Może',
+      },
+    ],
+  },
+  {
+    id: 'dzialy',
+    title: 'Nowe działy strony',
+    intro:
+      'Strona z nalewkami ma menu: przepisy, składniki, sprzęt, narzędzia, baza wiedzy. Tak mogłoby być i tu.',
+    items: [
+      {
+        id: 'lunchbox',
+        title: 'Śniadaniówki do szkoły',
+        text: 'Co włożyć, jak skomponować pudełko (pieczywo, coś sycącego, warzywo, owoc), co wytrzyma do południa. Przepisy ze znaczkiem „do szkoły”.',
+        seen: 'żadna z 18 stron',
+        rec: 'Tak',
+      },
+      {
+        id: 'tin',
+        title: 'Przeliczanie na inną blaszkę lub garnek',
+        text: 'Podajesz wymiary swojej blaszki (albo średnicę tortownicy), a ilości przeliczają się według powierzchni. Podobnie z pojemnością garnka.',
+        seen: '2 z 18 (Moje Wypieki, Niebo na talerzu)',
+        rec: 'Tak',
+      },
+      {
+        id: 'freeze',
+        title: 'Czy można zamrozić i jak długo trzymać',
+        text: 'Jedna linijka przy przepisie, np. rosół, pomidorowa, pierogi: „Można mrozić: 2–3 miesiące”, ze źródłem.',
+        seen: 'żadna z 18 stron',
+        rec: 'Tak',
+      },
+      {
+        id: 'tools',
+        title: 'Dział „Narzędzia”',
+        text: 'Przelicznik blaszek, miary kuchenne, lista zakupów, plan tygodnia w jednym miejscu.',
+        rec: 'Tak',
+      },
+      {
+        id: 'kb',
+        title: 'Dział „Baza wiedzy”',
+        text: 'Mrożenie, zamienniki, techniki, słowniczek, co poszło nie tak.',
+        rec: 'Tak',
+      },
+      {
+        id: 'ingredients',
+        title: 'Dział „Składniki”',
+        text: 'Strona każdego składnika i przepisy, w których jest.',
+        rec: 'Tak',
+      },
+      {
+        id: 'equipment',
+        title: 'Dział „Sprzęt”',
+        text: 'Thermomix, Lidlomix, piekarnik, blaszki: co mamy i co w tym robimy.',
+        rec: 'Może',
+      },
+      {
+        id: 'try',
+        title: 'Dział „Chcemy spróbować”',
+        text: 'Przepisy, których jeszcze nie gotowaliśmy. Może wystarczy filtr na liście.',
+        rec: 'Może',
+      },
+    ],
+  },
 ];
 
 export const STORAGE_KEY = 'kuchnia-wybor-v1';
