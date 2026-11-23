@@ -52,6 +52,11 @@ export function progressText([done, all]: [number, number]): string {
   return `Odpowiedzi: ${done} z ${all}`;
 }
 
+/** A section's letter: A, B, C… so a question can be named „B3”. */
+export function sectionLetter(index: number): string {
+  return String.fromCodePoint(65 + index);
+}
+
 /** The message: a heading per section, a line per answered or noted item, then her ideas. */
 export function summaryText(answers: Answers, date: Date, sections: Section[] = SECTIONS): string {
   const day = new Intl.DateTimeFormat('pl-PL', {
@@ -60,18 +65,20 @@ export function summaryText(answers: Answers, date: Date, sections: Section[] = 
     year: 'numeric',
   }).format(date);
   const lines = [`Nasza kuchnia: moje wybory, ${day}`];
-  for (const section of sections) {
-    const rows = section.items.flatMap((item) => {
+  for (const [s, section] of sections.entries()) {
+    const rows = section.items.flatMap((item, i) => {
       const choice = answers.choices[item.id];
       const note = answers.notes[item.id]?.trim();
       if (!choice && !note) {
         return [];
       }
       const answer = choice ?? 'bez odpowiedzi';
-      return [`- ${item.title}: ${answer}${note ? `. Uwaga: ${note}` : ''}`];
+      return [
+        `- ${sectionLetter(s)}${i + 1} ${item.title}: ${answer}${note ? `. Uwaga: ${note}` : ''}`,
+      ];
     });
     if (rows.length > 0) {
-      lines.push('', section.title.toUpperCase(), ...rows);
+      lines.push('', `${sectionLetter(s)}. ${section.title.toUpperCase()}`, ...rows);
     }
   }
   const ideas = answers.ideas.trim();

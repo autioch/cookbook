@@ -3,7 +3,7 @@
 // kept out of the index, the sitemap and the menu; her summary comes back into docs/backlog.md.
 import PageLayout from '../shared/PageLayout/PageLayout.astro';
 import { SECTIONS } from '../survey/items';
-import { optionsOf } from '../survey/summary';
+import { optionsOf, sectionLetter } from '../survey/summary';
 import '../survey/survey.css';
 ---
 
@@ -23,9 +23,11 @@ import '../survey/survey.css';
     </p>
     <nav class="survey__toc" aria-label="Części">
       <ol>
-        {SECTIONS.map((section) => (
+        {SECTIONS.map((section, s) => (
           <li>
-            <a href={`#${section.id}`}>{section.title}</a>
+            <a href={`#${section.id}`}>
+              {sectionLetter(s)}. {section.title}
+            </a>
           </li>
         ))}
         <li>
@@ -37,15 +39,20 @@ import '../survey/survey.css';
       </ol>
     </nav>
 
-    {SECTIONS.map((section) => (
+    {SECTIONS.map((section, s) => (
       <section class="flow survey__section" id={section.id} aria-labelledby={`${section.id}-h`}>
-        <h2 id={`${section.id}-h`}>{section.title}</h2>
+        <h2 id={`${section.id}-h`}>
+          {sectionLetter(s)}. {section.title}
+        </h2>
         <p>{section.intro}</p>
         <ol class="survey__items" role="list">
-          {section.items.map((item) => (
+          {section.items.map((item, i) => (
             <li class="survey__item">
               <fieldset>
-                <legend>{item.title}</legend>
+                <legend>
+                  {sectionLetter(s)}
+                  {i + 1}. {item.title}
+                </legend>
                 {item.text && <p>{item.text}</p>}
                 {item.seen && <p class="survey__meta">Mają to: {item.seen}</p>}
                 {item.rec && <p class="survey__meta">Polecam: {item.rec}</p>}
@@ -59,7 +66,8 @@ import '../survey/survey.css';
                 <details class="survey__note">
                   <summary>Dodaj uwagę</summary>
                   <label>
-                    Uwaga: {item.title}
+                    Uwaga do {sectionLetter(s)}
+                    {i + 1}
                     <textarea name={`note-${item.id}`} rows="3"></textarea>
                   </label>
                 </details>

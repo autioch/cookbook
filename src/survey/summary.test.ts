@@ -1,7 +1,14 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { SECTIONS, type Section } from './items.ts';
-import { optionsOf, parseAnswers, progress, progressText, summaryText } from './summary.ts';
+import {
+  optionsOf,
+  sectionLetter,
+  parseAnswers,
+  progress,
+  progressText,
+  summaryText,
+} from './summary.ts';
 
 const sections: Section[] = [
   {
@@ -49,12 +56,12 @@ test('summaryText lists answers and notes per section, then ideas and what is le
     [
       'Nasza kuchnia: moje wybory, 23 listopada 2026',
       '',
-      'CO JEST',
-      '- Wyszukiwarka: Do poprawy. Uwaga: za długa',
-      '- Druk: bez odpowiedzi. Uwaga: nie wiem',
+      'A. CO JEST',
+      '- A1 Wyszukiwarka: Do poprawy. Uwaga: za długa',
+      '- A2 Druk: bez odpowiedzi. Uwaga: nie wiem',
       '',
-      'POMYSŁY',
-      '- Lista zakupów: Tak',
+      'B. POMYSŁY',
+      '- B1 Lista zakupów: Tak',
       '',
       'MOJE POMYSŁY',
       'przepisy babci',
@@ -81,4 +88,9 @@ test('optionsOf defaults to Tak / Może / Nie', () => {
 test('every question on the page has its own id', () => {
   const ids = SECTIONS.flatMap((s) => s.items.map((i) => i.id));
   assert.equal(new Set(ids).size, ids.length);
+});
+
+test('sectionLetter counts from A', () => {
+  assert.equal(sectionLetter(0), 'A');
+  assert.equal(sectionLetter(5), 'F');
 });
