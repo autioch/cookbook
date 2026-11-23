@@ -1,0 +1,25 @@
+---
+import { AUTHOR } from '../consts';
+import { PAGES } from '../pages';
+import './SiteFooter.css';
+
+const here = Astro.url.pathname;
+const links = PAGES.filter((page) => page.menu === 'footer');
+---
+
+<footer class="site-footer">
+  <nav aria-label="Informacje">
+    <ul class="site-footer__links" role="list">
+      {links.map(({ path, title }) => (
+        <li>
+          <a href={path} aria-current={here === path ? 'page' : undefined}>
+            {title}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+  <p>
+    © 2026 <a href={AUTHOR.url}>{AUTHOR.name}</a>
+  </p>
+</footer>

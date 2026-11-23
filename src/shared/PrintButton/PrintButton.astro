@@ -1,0 +1,23 @@
+---
+// "Drukuj przepis", "Drukuj listę": the page's print styles decide what's on paper.
+// print.ts opens the browser's print dialog; without scripts the button hides and the browser's
+// own Print still works.
+import './PrintButton.css';
+
+interface Props {
+  text: string;
+}
+
+const { text } = Astro.props;
+---
+
+<button class="print-button" type="button">
+  <svg viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M7 9V3h10v6M7 17H4v-7h16v7h-3M7 14h10v7H7Z"></path>
+  </svg>
+  {text}
+</button>
+
+<script>
+  import './print';
+</script>

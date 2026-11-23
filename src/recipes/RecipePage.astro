@@ -1,0 +1,130 @@
+---
+// One recipe (docs/vision.md § The recipe page): the facts to choose by, the ingredients per part
+// of the dish, the steps; the family's notes and the sources below.
+import { render } from 'astro:content';
+import { AUTHOR, SITE_NAME } from '../shared/consts';
+import PageLayout from '../shared/PageLayout/PageLayout.astro';
+import PrintButton from '../shared/PrintButton/PrintButton.astro';
+import { typeset } from '../shared/typeset';
+import { recipeJsonLd } from './jsonLd';
+import { amountText, CATEGORIES, KIDS, minutesText, portionsText, SPICE, STATUS } from './labels';
+import type { Recipe } from './recipes';
+import './recipe.css';
+
+interface Props {
+  recipe: Recipe;
+}
+
+const { recipe } = Astro.props;
+const { data } = recipe;
+const { Content } = await render(recipe);
+const hasNotes = (recipe.body ?? '').trim() !== '';
+const jsonLd = recipeJsonLd(data, new URL(Astro.url.pathname, Astro.site).href, AUTHOR, {
+  name: SITE_NAME,
+  url: new URL('/', Astro.site).href,
+});
+---
+
+<PageLayout title={data.title} description={data.summary}>
+  <script slot="head" type="application/ld+json" is:inline set:html={jsonLd} />
+  <main class="flow recipe" id="main">
+    <div class="recipe__tools">
+      <a href="/przepisy/">Wszystkie przepisy</a>
+      <PrintButton text="Drukuj przepis" />
+    </div>
+    <h1>{data.title}</h1>
+    {data.status === 'szkic' && (
+      <p class="recipe__draft">
+        <span class="draft">{STATUS.szkic}</span> Przepis spisany z internetu. Czeka, aż go
+        ugotujemy i poprawimy.
+      </p>
+    )}
+    <p class="lede">{typeset(data.summary)}</p>
+    <dl class="recipe__facts">
+      <div>
+        <dt>Posiłek</dt>
+        <dd>{data.categories.map((c) => CATEGORIES[c]).join(', ')}</dd>
+      </div>
+      <div>
+        <dt>Czas</dt>
+        <dd>
+          {minutesText(data.time.total)}, w tym {minutesText(data.time.active)} pracy
+        </dd>
+      </div>
+      <div>
+        <dt>Porcje</dt>
+        <dd>{portionsText(data.servings)}</dd>
+      </div>
+      {data.spice !== undefined && (
+        <div>
+          <dt>Ostrość</dt>
+          <dd>{SPICE[data.spice]}</dd>
+        </div>
+      )}
+      {data.kids !== undefined && (
+        <div>
+          <dt>Dzieciom</dt>
+          <dd>{KIDS[data.kids]}</dd>
+        </div>
+      )}
+    </dl>
+
+    <div class="recipe__body">
+      <section class="recipe__ingredients" aria-labelledby="skladniki">
+        <h2 id="skladniki">Składniki</h2>
+        <p class="recipe__hint">Zaznacz, co już masz: wiersz się przekreśli.</p>
+        {data.ingredients.map((section) => (
+          <>
+            {section.title && <h3>{section.title}</h3>}
+            <ul class="recipe__list" role="list">
+              {section.items.map((item) => (
+                <li>
+                  <label>
+                    <input type="checkbox" />
+                    <span>
+                      <span class="recipe__amount">{typeset(amountText(item))}</span> {item.name}
+                      {item.note && <span class="recipe__note">, {typeset(item.note)}</span>}
+                      {item.optional && <span class="recipe__note"> (do wyboru)</span>}
+                    </span>
+                  </label>
+                </li>
+              ))}
+            </ul>
+          </>
+        ))}
+      </section>
+
+      <section class="recipe__method" aria-labelledby="przygotowanie">
+        <h2 id="przygotowanie">Przygotowanie</h2>
+        {data.steps.map((section) => (
+          <>
+            {section.title && <h3>{section.title}</h3>}
+            <ol class="recipe__steps">
+              {section.items.map((step) => (
+                <li>{typeset(step)}</li>
+              ))}
+            </ol>
+          </>
+        ))}
+      </section>
+    </div>
+
+    <section class="recipe__notes" aria-labelledby="uwagi">
+      <h2 id="uwagi">Uwagi</h2>
+      {hasNotes ? <Content /> : <p>Jeszcze bez uwag.</p>}
+    </section>
+
+    {data.sources.length > 0 && (
+      <section class="recipe__sources" aria-labelledby="zrodla">
+        <h2 id="zrodla">Na podstawie</h2>
+        <ul>
+          {data.sources.map((source) => (
+            <li>
+              <a href={source.url}>{source.title}</a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )}
+  </main>
+</PageLayout>

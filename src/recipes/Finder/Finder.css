@@ -1,0 +1,82 @@
+/* The finder: two fieldsets of 44 px choices, then the clear button and the count. */
+.finder {
+  padding: var(--space-4);
+  background: var(--surface);
+  border: var(--border);
+  border-radius: var(--radius);
+
+  & fieldset {
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+
+  & legend {
+    padding: 0;
+    font-size: var(--fs-h3);
+    font-weight: var(--fw-heading);
+  }
+
+  & ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin-block-start: var(--space-2);
+  }
+
+  /* A choice is a bordered chip; chosen, it's filled and its box ticked — never colour alone. */
+  & label {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    min-block-size: var(--target);
+    padding-inline: var(--space-3);
+    border: 1px solid var(--muted);
+    border-radius: var(--radius);
+    cursor: pointer;
+
+    &:has(:checked) {
+      background: var(--chip);
+      border-color: var(--accent);
+      font-weight: var(--fw-strong);
+    }
+  }
+
+  & input {
+    inline-size: 1.25rem;
+    block-size: 1.25rem;
+    margin: 0;
+  }
+}
+
+.finder__hint {
+  max-inline-size: var(--measure);
+  color: var(--muted);
+}
+
+.finder__end {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2) var(--space-4);
+
+  & [role='status'] {
+    font-weight: var(--fw-strong);
+  }
+}
+
+.finder__clear {
+  min-block-size: var(--target);
+  padding-inline: var(--space-4);
+  font: inherit;
+  font-weight: var(--fw-strong);
+  color: var(--accent);
+  background: var(--surface);
+  border: 1px solid var(--accent);
+  border-radius: var(--radius);
+  cursor: pointer;
+
+  &:hover {
+    background: var(--chip);
+  }
+}

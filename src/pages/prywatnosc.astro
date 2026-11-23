@@ -1,0 +1,52 @@
+---
+import { AUTHOR } from '../shared/consts';
+import PageLayout from '../shared/PageLayout/PageLayout.astro';
+import { page } from '../shared/pages';
+---
+
+<PageLayout title="Prywatność" description={page('/prywatnosc/').about}>
+  <main id="main" class="flow text-page">
+    <h1>Prywatność</h1>
+    <p class="lede">
+      Strona nie ma kont, formularzy, ciasteczek ani liczników odwiedzin. Czytasz zwykłe strony,
+      które leżą na serwerze.
+    </p>
+
+    <h2>Kto odpowiada</h2>
+    <p>
+      Stronę prowadzi {AUTHOR.name}. Jest administratorem danych w rozumieniu RODO, ale sam nie
+      zbiera żadnych danych osobowych. Kontakt: <a href={AUTHOR.url}>jakub.page</a>.
+    </p>
+
+    <h2>Co widzi serwer</h2>
+    <p>
+      Strony udostępnia firma Netlify. Jak każdy serwer, dostaje twój adres IP, informacje o
+      przeglądarce i adres strony, którą otwierasz. Netlify używa ich, żeby dostarczyć stronę i
+      chronić ją przed atakami. Robi to na zasadach swojej{' '}
+      <a href="https://www.netlify.com/privacy/">polityki prywatności</a>.
+    </p>
+
+    <h2>Czego tu nie ma</h2>
+    <p>
+      Strona nie zapisuje niczego na twoim urządzeniu i nie pobiera niczego z innych serwisów.
+      Czcionka i ikony leżą na tym samym serwerze co tekst. Nie ma reklam ani statystyk odwiedzin.
+      To, co zaznaczysz w wyszukiwarce przepisów, trafia tylko do adresu strony w twojej
+      przeglądarce.
+    </p>
+
+    <h2>Linki do innych stron</h2>
+    <p>
+      Pod przepisami są linki do źródeł. Kiedy w któryś klikniesz, tamta strona dostaje twój adres
+      IP na swoich zasadach.
+    </p>
+
+    <h2>Twoje prawa</h2>
+    <p>
+      Dane w logach Netlify są przetwarzane na podstawie prawnie uzasadnionego interesu, czyli
+      utrzymania i zabezpieczenia strony (art. 6 ust. 1 lit. f RODO). Możesz żądać dostępu do
+      danych, ich sprostowania lub usunięcia, ograniczenia przetwarzania i możesz wnieść sprzeciw.
+      Możesz też złożyć skargę do{' '}
+      <a href="https://uodo.gov.pl/">Prezesa Urzędu Ochrony Danych Osobowych</a>.
+    </p>
+  </main>
+</PageLayout>
