@@ -29,8 +29,8 @@ stages). What her verdict decides, each with a recommendation:
   „Nasza kuchnia”.
 - **Whose site it says it is** — the footer and Prywatność name the owner (`AUTHOR`); she runs it.
   Her name too, hers alone, or a family name.
-- **Competitors** — the sites she and the owner use are listed in
-  [research/ideas.md](research/ideas.md); next, a comparison in `docs/research/`.
+- **Competitors** — compared in [research/comparison.md](research/comparison.md); she picks rows
+  on a temporary page on a deploy preview, and her summary comes back here.
 
 ## Later
 
