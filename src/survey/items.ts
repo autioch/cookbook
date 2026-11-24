@@ -1,5 +1,5 @@
-// The temporary choice page (/wybor/): what the owner's wife is asked. Lives only on a deploy
-// preview; her summary comes back into docs/backlog.md. Rows of docs/research/comparison.md are
+// The temporary choice page (/wybor/): what the owner's wife is asked. Live but unlisted; her
+// summary comes back into docs/backlog.md. Rows of docs/research/comparison.md are
 // referred to by their number.
 
 interface Item {

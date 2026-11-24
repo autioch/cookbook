@@ -23,8 +23,8 @@ rewrite this doc first.
 
 **One exception, temporary (owner):** `/wybor/`, the page where the owner's wife picks what the
 site should have, keeps her answers in `localStorage` (`kuchnia-wybor-v1`) and sends them through
-the phone's share sheet. It exists only on its PR's deploy preview and is removed before that PR
-merges.
+the phone's share sheet. It is live but unlisted (noindex, outside the sitemap and the menu) until
+her answers are in the backlog, then removed.
 
 ## Transport & headers
 
