@@ -21,6 +21,11 @@ login, an `/admin/` page or a request from the page ends this model.
 Any server code, token, storage key, fetched origin or third-party script ends this model —
 rewrite this doc first.
 
+**One exception, temporary (owner):** `/wybor/`, the page where the owner's wife picks what the
+site should have, keeps her answers in `localStorage` (`kuchnia-wybor-v1`) and sends them through
+the phone's share sheet. It is live but unlisted (noindex, outside the sitemap and the menu) until
+her answers are in the backlog, then removed.
+
 ## Transport & headers
 
 Netlify serves HTTPS with its own certificate. `.page` is on the browsers' HSTS preload list, so

@@ -29,8 +29,8 @@ stages). What her verdict decides, each with a recommendation:
   „Nasza kuchnia”.
 - **Whose site it says it is** — the footer and Prywatność name the owner (`AUTHOR`); she runs it.
   Her name too, hers alone, or a family name.
-- **Competitors** — the sites she and the owner use are listed in
-  [research/ideas.md](research/ideas.md); next, a comparison in `docs/research/`.
+- **Competitors** — compared in [research/comparison.md](research/comparison.md); she picks rows
+  on a temporary page on a deploy preview, and her summary comes back here.
 
 ## Later
 
@@ -47,10 +47,10 @@ stages). What her verdict decides, each with a recommendation:
 
 Steps only the owner can take, when they choose.
 
-- **Show the deploy preview to your wife** with the doc for her answers, in Polish — what's on
-  the site, the ways to enter recipes, the decisions and the ideas to pick
-  ([Nasza kuchnia — do przejrzenia i wyboru](https://claude.ai/artifact/9sv9oc7CAWvwGvakZvjg5g),
-  private until you share it). Her answers come back into this backlog.
+- **Send your wife https://kuchnia.jakub.page/wybor/**: what's on the site, the decisions,
+  the comparison's rows and the ideas, each with an answer to tick and a note, and a box for her
+  own ideas. It remembers her answers on her phone; „Wyślij Kubie” sends you the summary. Paste
+  it to the agent: the answers come back into this backlog and the page is removed.
 - **Paste the recipes the agent couldn't use** from your list:
   - Ervegan, [twarożek z nerkowców](https://ervegan.com/2015/01/idealny-twarozek-z-orzechow-nerkowca/):
     the site blocks bots (captcha). It becomes the second version of Ser z nerkowców.
